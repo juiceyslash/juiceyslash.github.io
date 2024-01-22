@@ -1,0 +1,49 @@
+<!-- HTML -->
+<div id="chat-container" style="max-width: 300px; margin: 0 auto; overflow-y: scroll; background-color: #1a1a1a; color: white; border-radius: 8px; padding: 15px; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); font-family: Arial, sans-serif;">
+  <div id="chat-display" style="padding: 10px;"></div>
+  <input type="text" id="user-input" placeholder="Digite sua mensagem..." style="box-sizing: border-box; width: 100%; padding: 10px; border: 1px solid #333; border-radius: 5px; margin-top: 10px; background-color: #333; color: white;">
+  <button onclick="sendMessage()" style="box-sizing: border-box; width: 100%; padding: 10px; background-color: #4700FF; color: white; border: none; border-radius: 5px; margin-top: 10px; cursor: pointer;">Enviar</button>
+</div>
+
+<script>
+  // JavaScript
+  const chatDisplay = document.getElementById('chat-display');
+  const userInput = document.getElementById('user-input');
+
+  function sendMessage() {
+    const userMessage = userInput.value;
+    if (userMessage.trim() === '') {
+      return; // Não envie mensagens vazias
+    }
+
+    displayMessage('user', userMessage);
+
+    // Lógica para processar a mensagem do usuário e gerar uma resposta
+    const response = generateResponse(userMessage);
+    displayMessage('participant', response);
+
+    // Limpar o campo de entrada do usuário
+    userInput.value = '';
+
+    // Rolar para a última mensagem
+    chatDisplay.scrollTop = chatDisplay.scrollHeight;
+  }
+
+  function displayMessage(sender, message) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add(sender);
+    messageElement.style.fontFamily = 'Arial, sans-serif';
+    messageElement.textContent = message;
+
+    chatDisplay.appendChild(messageElement);
+
+    // Rolar para a última mensagem
+    chatDisplay.scrollTop = chatDisplay.scrollHeight;
+  }
+
+  function generateResponse(userMessage) {
+    // Lógica para gerar uma resposta com base na mensagem do usuário
+    // Aqui você pode ajustar conforme necessário ou adicionar uma lógica mais complexa
+    return ''; // Mensagem vazia ou substituir por sua própria lógica
+  }
+</script>
